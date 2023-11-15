@@ -6,14 +6,13 @@ document.addEventListener('click', (event) => {
         let number = event.target.textContent;
         document.querySelector('.display').textContent += number;
         operation.push(number);
-    }
-})
-
-document.addEventListener('click', (event) => {
-    if ('ac' === event.target.id) {
+    } else if ('ac' === event.target.id) {
         document.querySelector('.display').textContent = '';
         while (operation.length !== 0) {
             operation.pop();
         }
+    } else if ('back' === event.target.id) {
+        document.querySelector('.display').textContent = document.querySelector('.display').textContent.slice(0, -1);
+        operation.pop();
     }
 })
