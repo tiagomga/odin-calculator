@@ -7,3 +7,9 @@ document.addEventListener('click', (event) => {
         document.querySelector('.display').textContent += number;
     }
 })
+
+document.addEventListener('click', (event) => {
+    if ('ac' === event.target.id) {
+        document.querySelector('.display').textContent = '';
+    }
+})
