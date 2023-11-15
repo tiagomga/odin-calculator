@@ -1,12 +1,14 @@
 const operation = [];
 
 const operators = {
-    addition: ['+', add],
+    addition: ['/+', add],
     subtraction: ['-', subtract],
     multiplication: ['*', multiply],
     division: ['/', divide],
     equals: '=',
 };
+
+let usedOperator = false;
 
 function add(a, b) {
     return a + b;
@@ -26,12 +28,15 @@ function divide(a, b) {
 
 function performOperation() {
     let operationString = operation.join('');
-    if ('+' in operationString) {
-        expression = operationString.split('+');
-        return add(expression[0], expression[2]);
-    } else if ('-' in operationString) {
-        expression = operationString.split('-');
-        return add(expression[0], expression[2]);
+    for (let operator in operators) {
+        operatorSymbol = operators[operator][0];
+        operatorFunction = operators[operator][1];
+        if (operationString.search(operatorSymbol) !== -1) {
+            expression = operationString.split(operatorSymbol);
+            a = expression[0];
+            b = expression[1];
+            return operatorFunction(a, b);
+        }
     }
 }
 
@@ -45,6 +50,7 @@ document.addEventListener('click', (event) => {
     } else if ('operator' === event.target.classList.value) {
         display.textContent = '';
         operation.push(operators[event.target.id][0]);
+        usedOperator = true;
     } else if ('ac' === event.target.id) {
         display.textContent = '';
         while (operation.length !== 0) {
