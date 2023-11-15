@@ -16,6 +16,10 @@ function subtract(a, b) {
     return a - b;
 }
 
+function multiply(a, b) {
+    return a * b;
+}
+
 // Event to add numbers to calculator's display
 document.addEventListener('click', (event) => {
     const display = document.querySelector('.display');
