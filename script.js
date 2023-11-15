@@ -1,10 +1,10 @@
 const operation = [];
 
 const operators = {
-    addition: '+',
-    subtraction: '-',
-    multiplication: '*',
-    division: '/',
+    addition: ['+', add],
+    subtraction: ['-', subtract],
+    multiplication: ['*', multiply],
+    division: ['/', divide],
     equals: '=',
 };
 
@@ -24,6 +24,17 @@ function divide(a, b) {
     return a / b;
 }
 
+function performOperation() {
+    let operationString = operation.join('');
+    if ('+' in operationString) {
+        expression = operationString.split('+');
+        return add(expression[0], expression[2]);
+    } else if ('-' in operationString) {
+        expression = operationString.split('-');
+        return add(expression[0], expression[2]);
+    }
+}
+
 // Event to add numbers to calculator's display
 document.addEventListener('click', (event) => {
     const display = document.querySelector('.display');
@@ -33,7 +44,7 @@ document.addEventListener('click', (event) => {
         operation.push(number);
     } else if ('operator' === event.target.classList.value) {
         display.textContent = '';
-        operation.push(operators[event.target.id]);
+        operation.push(operators[event.target.id][0]);
     } else if ('ac' === event.target.id) {
         display.textContent = '';
         while (operation.length !== 0) {
