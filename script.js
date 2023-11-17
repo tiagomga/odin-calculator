@@ -20,13 +20,11 @@ document.addEventListener('click', (event) => {
     if ('number' === event.target.classList.value) {
         let number = event.target.textContent;
         display.textContent += number;
-        operation.push(number);
     } else if ('operator' === event.target.classList.value) {
-            display.textContent = '';
+        display.textContent = '';
     } else if ('ac' === event.target.id) {
         display.textContent = '';
     } else if ('back' === event.target.id) {
         display.textContent = display.textContent.slice(0, -1);
-        operation.pop();
     }
 });
