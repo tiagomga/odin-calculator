@@ -14,7 +14,7 @@ function divide(a, b) {
     return a / b;
 }
 
-// Event to add numbers to calculator's display
+// Event to handle numbers in calculator's display
 document.addEventListener('click', (event) => {
     const display = document.querySelector('.display');
     if ('number' === event.target.classList.value) {
